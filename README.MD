@@ -12,10 +12,8 @@
 
   </ol>
 </details>
-<br />
 
 ## About The Project
-<br/>
 
 ## General Documentation
 
@@ -55,6 +53,7 @@ Should return HTTP/200 with the string "OK", for readiness probes.
 
 Should return HTTP/200 with the string "OK", for liveness probes.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Prerequisites
 
@@ -124,6 +123,8 @@ Kubectl:
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.0/deploy/static/provider/cloud/deploy.yaml
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Deploying the project
 
 to deploy the project, run a simple helm command:
@@ -141,3 +142,5 @@ kubectl get pods -n aks-task
 ## Contact
 
 Ben Touitou - bentzi259@gmail.com
+
+<p align="right">(<a href="#top">back to top</a>)</p>
