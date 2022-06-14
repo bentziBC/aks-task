@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Chart.Name | default "aks-task" }}-bitcoinapi-ingress
+  labels:
+    app: {{ .Chart.Name | default "aks-task" }}-bitcoinapi
+spec:
+  ingressClassName: nginx
+  {{- $bitcoinapi_ingress := .Values.bitcoinapi.ingress | default dict }}
+  {{- if $bitcoinapi_ingress.tls }}
+  tls:
+    - hosts:
+        bitcoinapi
+      secretName: {{ .secretName }}
+    {{- end }}
+  rules:
+    - host: bitcoinapi
+      http:
+        paths:
+          - path: /btc
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ .Chart.Name | default "aks-task" }}-bitcoinapi-srv
+                port:
+                  number: 80

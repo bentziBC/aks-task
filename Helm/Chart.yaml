@@ -1,0 +1,12 @@
+apiVersion: v2
+name: aks-task
+description: Aks task helm chart
+type: application
+# Chart version, only make changes when updating the chart
+# Expected as semver
+version: 0.1.0
+# Application version, bump it when updating the application.
+# Expected as semver
+BitcoinApiVersion: "1.0.0"
+RestApiVersion: "1.0.0"
+appVersion: "1.0.0"

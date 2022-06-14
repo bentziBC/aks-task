@@ -1,0 +1,25 @@
+{{- if .Values.bitcoinapi.hpa.enabled }}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Chart.Name | default "aks-task" }}-restapi-hpa
+  labels:
+    app: {{ .Chart.Name | default "aks-task" }}-restapi
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ .Chart.Name | default "aks-task" }}-restapi
+  minReplicas: {{ .Values.restapi.hpa.minReplicas | default "10" }}
+  maxReplicas: {{ .Values.restapi.hpa.maxReplicas | default "2" }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: {{ .Values.restapi.hpa.targetCPUUtilizationPercentage | default "50" }}
+
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: {{ .Values.restapi.hpa.targetMemoryUtilizationPercentage | default "70" }}
+{{- end }}

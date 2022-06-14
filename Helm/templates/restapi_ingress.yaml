@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Chart.Name | default "aks-task" }}-restapi-ingress
+  labels:
+    app: {{ .Chart.Name | default "aks-task" }}-restapi
+spec:
+  ingressClassName: nginx
+  {{- $restapi_ingress := .Values.restapi.ingress | default dict }}
+  {{- if $restapi_ingress.tls }}
+  tls:
+    - hosts:
+       - bitcoinapi
+      secretName: {{ $restapi_ingress.tls.secretName }}
+  {{- end }}
+  rules:
+    - host: restapi
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ .Chart.Name | default "aks-task" }}-restapi-srv
+                port:
+                  number: 8080

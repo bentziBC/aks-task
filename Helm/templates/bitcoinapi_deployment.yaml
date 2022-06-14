@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name | default "aks-task" }}-bitcoinapi
+  labels:
+    app: {{ .Chart.Name | default "aks-task" }}-bitcoinapi
+spec:
+  minReadySeconds: 10
+  progressDeadlineSeconds: 100
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name | default "aks-task" }}-bitcoinapi
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name | default "aks-task" }}-bitcoinapi
+    spec:
+      containers:
+      - image: bentzi259/bitcoinapi:{{ .Values.bitcoinapi.docker_image_version | default "1.0.0" }}
+        imagePullPolicy: IfNotPresent
+        name: {{ .Chart.Name | default "aks-task" }}-bitcoinapi
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 30
+          httpGet:
+            path: /readiness
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 60
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /liveness
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 20
+        resources:
+          limits:
+            cpu: {{ .Values.bitcoinapi.resources.limits.cpu | default "1" }}
+            memory: {{ .Values.bitcoinapi.resources.limits.memory | default "512Mi" }}
+          requests:
+            cpu: {{ .Values.bitcoinapi.resources.requests.cpu | default "250m" }}
+            memory: {{ .Values.bitcoinapi.resources.requests.memory | default "150Mi" }}
