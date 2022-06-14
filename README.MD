@@ -16,7 +16,6 @@
 <br /> 
 
 
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 <br/>
@@ -45,7 +44,7 @@ Please install the following to run the project :
 
 To install the cluster on azure, run the following:
 
-```bash
+```console
 az login
 aks-engine deploy --dns-prefix <AKS_Cluster_name> \
                     --resource-group <RG_name> \
@@ -59,12 +58,12 @@ aks-engine deploy --dns-prefix <AKS_Cluster_name> \
 
 To avoid complications, temporarily configure the newly created Kubeconfig file as an environment variable:
 
-```bash
+```console
 export KUBECONFIG=<Project_path>/_output/<Cluster_Name><Generated_suffix>/kubeconfig/kubeconfig.<location>.json
 ```
 
 Now, lets ensure the cluster is running and kubectl is configured with the right context:
-```bash
+```console
 kubectl cluster-info
 ```
 
@@ -73,28 +72,50 @@ kubectl cluster-info
 ## Installing the Ingress Controller
 Install the Nginx ingress controller with a simple command:
 
-```bash
+```console
 helm install ingress-nginx ingress-nginx \
   --repo https://kubernetes.github.io/ingress-nginx \
   --namespace ingress-nginx --create-namespace
 ```
 
 Kubectl:
-```bash
+```console
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.0/deploy/static/provider/cloud/deploy.yaml
 ```
 
 ### Deploying the project:
 to deploy the project, run a simple helm command:
-```bash
+```console
 helm install aks-task ./Helm -n aks-task --create-namespace -f Helm/values.yaml 
 ```
 
 Ensure evrything is working currectly:
-
-kubectl get pods -n micproject
+```console
+kubectl get pods -n aks-task
 ```
 
 ##General Documentation:
 
+The project consists of two main api's:
 
+###BitcoinApi:
+
+### GET "/btc/USD"
+Should return HTTP/200 with the current bitcoin price in USD, upon uri request to "/btc/USD"  
+### GET "/btc/average"
+Should return HTTP/200 with the last 10 minutes average bitcoin USD price, upon uri request to "/btc/average"  
+### GET "/readiness"
+Should return HTTP/200 with the string "OK", for readiness probes.
+### GET "/liveness"
+Should return HTTP/200 with the string "OK", for liveness probes.
+
+<br/>
+
+###RestApi:
+
+### GET "/"
+Should return HTTP/200 with the following json: {'result' : 'OK'}
+### GET "/readiness"
+Should return HTTP/200 with the string "OK", for readiness probes.
+### GET "/liveness"
+Should return HTTP/200 with the string "OK", for liveness probes.
