@@ -91,9 +91,10 @@ Please install the following to run the project :
 <br/>
 
 To install the cluster on azure, run the following:
-
 ```console
 az login
+```
+```console
 aks-engine deploy --dns-prefix <AKS_Cluster_name> \
                     --resource-group <RG_name> \
                     --api-model aks-engine/ClusterDefinition.json \
@@ -104,11 +105,10 @@ aks-engine deploy --dns-prefix <AKS_Cluster_name> \
 
 <br/>
 
-To avoid complications, temporarily configure the newly created Kubeconfig file as an environment variable:
-Not good, give a link to a how to append the configuration.
-```console
-export KUBECONFIG=<Project_path>/_output/<Cluster_Name><Generated_suffix>/kubeconfig/kubeconfig.<location>.json
-```
+A new kubeconfig file is created at the _output folder, append the kubeconfig values to your context.
+Optionally with this [guide](https://medium.com/@jacobtomlinson/how-to-merge-kubernetes-kubectl-config-files-737b61bd517d)
+
+
 
 Now, lets ensure the cluster is running and kubectl is configured with the right context:
 
