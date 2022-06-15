@@ -8,18 +8,18 @@
         "enableRbac": true,
         "addons": [
           {
-            "name": "vmss-autoscaler",
+            "name": "aks-task-vmss-autoscaler",
             "enabled": true,
             "pools": [
               {
-                "name": "agentpool1",
+                "name": "aks-task-agent-pool2",
                 "config": {
                   "min-nodes": "1",
                   "max-nodes": "10"
                 }
               },
               {
-                "name": "agentpool2",
+                "name": "aks-task-agent-pool2",
                 "config": {
                   "min-nodes": "1",
                   "max-nodes": "10"
@@ -27,7 +27,7 @@
               }
             ],
             "config": {
-              "scan-interval": "1m"
+              "scan-interval": "10s"
             }
           }
         ]
@@ -41,13 +41,13 @@
     },
     "agentPoolProfiles": [
       {
-        "name": "agentpool1",
+        "name": "aks-task-agent-pool1",
         "count": 1,
         "vmSize": "Standard_D2_v3",
         "distro": "ubuntu-18.04"
       },
       {
-        "name": "agentpool2",
+        "name": "aks-task-agent-pool2",
         "count": 1,
         "vmSize": "Standard_D2_v3",
         "distro": "ubuntu-18.04"
