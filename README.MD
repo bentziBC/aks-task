@@ -139,6 +139,29 @@ Ensure evrything is working currectly:
 kubectl get pods -n aks-task
 ```
 
+### Upgrading the project
+
+After updating the code/chart, make sure to bump the version at Chart.yaml and in the chart defaults, when done - run :
+
+```console
+helm upgrade aks-task ./Helm -n aks-task -f Helm/values.yaml 
+```
+
+## To improve
+
+* `DB` - Integrate a simple DB (HA enabled) to calculate the average from and to save historical data for statistics and such.
+* `GitOps` - Ideally add an automated workflow for continues build and deployment.
+* `Monitoring` - Implement custom application metrics for production monitoring such as success rate, request rate, etc...  
+* `Projects seperation` - I would seperate the projects to a different repo's and helm charts, for much more comfortable and simpler versioning and workflow.  
+* `TLS` - Configure the SSL-Offload at ingress level (with the helm chart)
+* `Service mesh` - Maybe integrate service mesh to improve load balancing at scale, secure in-cluster communication with mTLS, and improve general network observability.
+* `Gunicorn optimizations`: I will try to take flask to the limit by tuninnig flask and gunicorn performance to ideally use its resources(procceses, handles, threads, etc..).  
+* `Robustness`: Better handle api exceptions using mirror url's as backup or generating from a list on request initiation.
+* `Tests`
+  * `Unit tests` - Integrate simple unit tests for the code .
+  * `load test` - Integrate some kind of load tests as a part of the build process, using locust, siege, jmeter. alternatively i would develop a custom load tests tools.
+* `Helm chart documentation` - Write a full helm chart doc table. 
+
 ## Contact
 
 Ben Touitou - bentzi259@gmail.com
