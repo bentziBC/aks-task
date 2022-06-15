@@ -8,8 +8,9 @@
     <li><a href="#prerequisites">Prerequisites</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#creating-the-cluster">Creating the cluster</a></li>
+    <li><a href="#deploying-the-project">Deploy the project</a></li>
+    <li><a href="#to-improve">To improve</a></li>
     <li><a href="#contact">Contact</a></li>
-
   </ol>
 </details>
 
@@ -157,7 +158,7 @@ After updating the code/chart, make sure to bump the version at Chart.yaml and i
 helm upgrade aks-task ./Helm -n aks-task -f Helm/values.yaml 
 ```
 
-## To improve
+### To improve
 
 * `DB` - Integrate a simple DB (HA enabled) to calculate the average from and to save historical data for statistics and such.
 * `GitOps` - Ideally add an automated workflow for continues build and deployment.
