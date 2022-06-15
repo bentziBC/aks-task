@@ -15,6 +15,16 @@
 
 ## About The Project
 
+### Infrastructure
+
+* Created a ClusterDefinition file following the [Documentation](https://github.com/Azure/aks-engine/blob/master/docs/topics/clusterdefinitions.md)
+
+
+* Provisioned a kubernetes cluster using aks-engine with  , as the task required
+
+For cluster upgrade and maintenance - see [Guide](https://github.com/Azure/aks-engine/blob/master/docs/topics/upgrade.md)
+
+
 ## General Documentation
 
 The project consists of two main api's:
@@ -165,5 +175,6 @@ helm upgrade aks-task ./Helm -n aks-task -f Helm/values.yaml
 ## Contact
 
 Ben Touitou - bentzi259@gmail.com
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
