@@ -146,8 +146,11 @@ kubectl get pods -n aks-task
 
 ### Upgrading the project
 
-After updating the code/chart, make sure to bump the version at Chart.yaml and in the chart defaults, when done - run :
-what means bump ? give a guide or something
+After updating the code/chart, make sure to [bump](https://medium.com/@AlaaAttya/semantic-versioning-using-bumpversion-5eae02b7087f) the version at Chart.yaml according to Semantic Versioning. 
+Additionally, update the chart defaults.
+
+when done - run :
+
 ```console
 helm upgrade aks-task ./Helm -n aks-task -f Helm/values.yaml 
 ```
