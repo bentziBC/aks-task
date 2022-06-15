@@ -162,12 +162,12 @@ helm upgrade aks-task ./Helm -n aks-task -f Helm/values.yaml
 * `Tests`
   * `Unit tests` - Integrate simple unit tests for the code .
   * `load test` - Integrate some kind of load tests as a part of the build process, using locust, siege, jmeter. alternatively i would develop a custom load tests tools.
-* `Robustness`: Better handle api exceptions using mirror url's as backup or generating from a list on request initiation.
+* `Robustness`: Better handle api exceptions using mirror URLs as backup or generating from a list on request initiation.
 * `DB` - Integrate a simple DB (HA enabled) to calculate the average, and to save historical data.
-* `GitOps` - Ideally add an automated workflow for continuous build and deployment.
-* `Gunicorn optimizations`: I will try to take flask to the limit by tuninnig flask and gunicorn performance to ideally use its resources(procceses, handles, threads, etc..).  
-* `Service mesh` - Maybe integrate service mesh to improve load balancing at scale, secure in-cluster communication with mTLS, and improve general network observability.
-* `Projects seperation` - I would seperate the projects to a different repo's and helm charts, for much more comfortable and simpler versioning and workflow.
+* `GitOps` - Automated workflow for continuous build and deployment.
+* `Gunicorn optimizations`: Tuning flask and gunicorn performance to ideally use its resources(processes, handles, threads, etc.).  
+* `Service mesh` - Consider integrate service mesh to improve load balancing at scale, secure in-cluster communication with mTLS, and improve general network observability.
+* `Projects seperation` - Consider seperating the projects to different repos and helm charts, for simpler versioning and workflow.
 * `Helm chart documentation` - Write a full helm chart doc table. 
 
 ## Contact
@@ -176,5 +176,4 @@ Ben Touitou - bentzi259@gmail.com
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
